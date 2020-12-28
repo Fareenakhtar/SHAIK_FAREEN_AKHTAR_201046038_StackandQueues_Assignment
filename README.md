@@ -1,4 +1,4 @@
-# StackandQueues_Assignment_201046038
+# SHAIK_FAREEN_AKHTAR_201046038_StackandQueues_Assignment
 
 1. Check balancing of symbols (like ‘{‘, ‘(‘, ‘[‘ ) and their order using stack.
 
