@@ -1,6 +1,9 @@
 #include <assert.h>
 #include "stack.h"
 #include <stdint.h>
+#include<assert.h>
+#include<stddef.h>
+#include<stdlib.h>
 
 Stack       stack_new(uint32_t size){
     size = (size > 0 && size < MAX_DEPTH)?  size: MAX_DEPTH; //if the size of the array is 0 or more thn max_depth, the size is set as max-depth by default
@@ -67,4 +70,53 @@ Stack*  balance_symbols(Stack *stk, char smb[]){
             return stk;
         }
     }return stk;
+}
+
+
+Stack* postfix(Stack *stk,char p[])
+{
+	Stack s = stack_new(5);
+	Stack *stk = &s;
+
+	Stack_Result res;
+	for(int i=0;i<strlen(p);i++)
+    {
+        if(isdigit(p[i]))
+        {
+            stk=stack_push(stk,p[i],&res);
+         }
+        else
+        {
+           char a,b;
+            int c=0;
+            a = stk->data[stk->top];
+            stk = stack_pop(stk,&res);
+            b = stk->data[stk->top];
+            stk = stack_pop(stk,&res);
+            if(p[i]=='+')
+            {
+            c = a -'0' + b - '0';
+            }
+            else if(p[i]=='-')
+            {
+                c = (b-'0') - (a-'0');
+            }
+            else if(p[i]=='*')
+            {
+                c = (b-'0') * (a-'0');
+            }
+            else if(p[i]=='/')
+            {
+                c = (b-'0')/(a-'0');
+            }
+
+            char pf = c+'0';
+            stk = stack_push(stk,pf,&res);
+
+        }
+    }
+
+stk = stack_peek(stk,&res);
+assert(res.data=='6');
+
 }
