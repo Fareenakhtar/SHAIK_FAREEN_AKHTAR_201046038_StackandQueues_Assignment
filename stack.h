@@ -1,9 +1,14 @@
-#include "appconst.h"
 #include <stdint.h>
-
+#define MAX_DEPTH 32
+#include<stddef.h>
+#include<stdlib.h>
 #ifndef STACK_H_INCLUDED
 #define STACK_H_INCLUDED
 
+
+#define STACK_OK 1
+#define STACK_FULL 2
+#define STACK_EMPTY 3
 
 typedef struct _stack_ Stack;
 
@@ -32,3 +37,4 @@ Stack*          stack_peek(Stack *stk, StackResult *res);
 Stack*          balance_symbols(Stack *stk, char smb[]);
 
 #endif // STACK_H_INCLUDED
+
